@@ -9,6 +9,7 @@ class Blockchain
     private:
         Block createGenesisBlock();
         std::vector<Block> chain;
+        int difficulty;
     
     public:
         Blockchain();
