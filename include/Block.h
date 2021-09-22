@@ -1,6 +1,4 @@
-#ifndef Block_h
-#define Block_h
-
+#pragma once
 #include <string>
 
 #include "TransactionData.h"
@@ -27,5 +25,3 @@ class Block
 
         bool isHashValid();
 };
-
-#endif

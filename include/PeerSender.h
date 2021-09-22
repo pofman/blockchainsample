@@ -25,11 +25,10 @@ private:
 	char *receive=NULL;
     std::shared_ptr<Blockchain> blockchain;
 	void GetPrompt(char *cmd);
-	void GetListOfFiles(char**,int);
-	void ReceiveAndDownload(int SOCKET);
 
 public:
 	PeerSender(std::shared_ptr<Blockchain> blockchain);
+	~PeerSender();
 	void RegisterPeer(std::string hostname, int port);
 	void FileDownload();
 };

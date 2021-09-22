@@ -17,7 +17,7 @@
 
 int main(int argc, char **argv)
 {
-     if(argc < 4)
+     if(argc < 3)
      {
           std::cout << "Invalid amount of arguments";
           return 1;
@@ -25,12 +25,10 @@ int main(int argc, char **argv)
 
      std::string PeerReceiverName = argv[1];
      int PeerReceiverPort = atoi(argv[2]);
-     std::string Mode = argv[3];
      
-     auto tinchocoin = std::shared_ptr<Blockchain>();
+     auto tinchocoin = std::make_shared<Blockchain>();
      BlockchainNetwork network(PeerReceiverName, PeerReceiverPort, tinchocoin);
-
-     network.startNetwork(Mode);
+     network.startNetwork();
 
      std::cout << "Mining block 1" << std::endl;
      time_t dataTime;
@@ -55,6 +53,9 @@ int main(int argc, char **argv)
 
      std::cout << "\nNow Is Chain valid??????" << std::endl
           << tinchocoin->isChainValid() << std::endl;
+
+     while(true)
+     {}
 
     return 0;
 }

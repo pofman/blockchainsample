@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string>
 #include <openssl/sha.h>
-#include "Block.h"
+#include "include/Block.h"
 #include "include/TransactionData.h"
 
 Block::Block(int index, TransactionData data, std::string previousHash)

@@ -8,10 +8,7 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-set(OPENSSL_INCLUDE_DIR /usr/local/opt/openssl@1.1/include)
-set(OPENSSL_CRYPTO_LIBRARY /usr/local/opt/openssl@1.1/lib)
-set(CRYPTO_INCLUDE_DIR /usr/local/opt/openssl@1.1/include)
-set(OPENSSL_LIBRARIES /usr/local/opt/openssl@1.1/lib)
+set(OPENSSL_ROOT_DIR /usr/local/opt/openssl@1.1)
 set(OPENSSL_USE_STATIC_LIBS TRUE)
 set(CMAKE_REQUIRED_LIBRARIES socket crypto openssl)
 find_package(OpenSSL REQUIRED)
@@ -19,7 +16,15 @@ find_package(OpenSSL REQUIRED)
 set(Headers
     "include/Block.h"
     "include/Blockchain.h"
+    "include/BlockchainCommand.h"
+    "include/BlockchainNetwork.h"
     "include/Color.h"
+    "include/Command.h"
+    "include/GetFilesListCommand.h"
+    "include/commands/ListFilesCommand.h"
+    "include/commands/ReadFileCommand.h"
+    "include/commands/ReceiveFileCommand.h"
+    "include/domain/Peer.h"
     "include/PeerReceiver.h"
     "include/PeerSender.h"
     "include/TransactionData.h"
@@ -28,9 +33,16 @@ set(Headers
 set(Sources
     Block.cpp
     Blockchain.cpp
+    BlockchainNetwork.cpp
+    "Command.cpp"
+    GetFilesListCommand.cpp
+    ListFilesCommand.cpp
     PeerReceiver.cpp
     PeerSender.cpp
+    ReadFileCommand.cpp
+    ReceiveFileCommand.cpp
     main.cpp
 )
 
-add_library(${This} STATIC ${Sources} ${Headers})
+add_executable(${This} MACOSX_BUNDLE ${Sources})
+target_link_libraries(${This} OpenSSL::SSL)

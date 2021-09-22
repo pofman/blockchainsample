@@ -10,7 +10,10 @@
 #include <regex.h>
 #include <thread>
 #include <iostream>
+#include "Color.h"
 #include "Blockchain.h"
+#include "commands/ListFilesCommand.h"
+#include "commands/ReadFileCommand.h"
 
 class PeerReceiver
 {
@@ -21,13 +24,8 @@ private:
 	struct sockaddr_in serv_addr, cli_addr;
 	char buffer[256]={0};
 	std::shared_ptr<Blockchain> blockchain;
-	void FileReaderAndReceiver(const char* file_name, int socket_id);
-	int GetFilesize(FILE*);
-	void listfiles(int);
-	void listCommand(char[]);
-
-
 public:
 	PeerReceiver(std::string receiverName, int receiverPort, std::shared_ptr<Blockchain> blockchain);
+	~PeerReceiver();
 	void StartReceiver();
 };
