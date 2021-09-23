@@ -5,9 +5,8 @@
 
 class ReadFileCommand : public Command {
 public:
-    ReadFileCommand(int socketId, const char *fileName);
-    void Execute() override;
+    ReadFileCommand();
+    void Execute(int socketId, const char * cmd) override;
 private:
-    const char *fileName;
     int GetFilesize(FILE* fileid);
 };

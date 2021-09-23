@@ -5,10 +5,9 @@
 class ListFilesCommand : public Command
 {
 public:
-    ListFilesCommand(int socketId);
-    void Execute() override;
+    ListFilesCommand();
+    void Execute(int socketId, const char * cmd) override;
 private:
     char *bufferResult;
     void ListCommand(char bufferResult[]);
-    void listfiles();
 };

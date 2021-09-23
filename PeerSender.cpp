@@ -51,9 +51,9 @@ void PeerSender::FileDownload()
 		};
 
 		if (!strcmp(cmd, "ls")) {
-			GetFilesListCommand(sockfd).Execute();
+			GetFilesListCommand().Execute(sockfd, cmd);
 		} else {
-			ReceiveFileCommand(sockfd).Execute();
+			ReceiveFileCommand().Execute(sockfd, cmd);
 		}
 
 		std::cout << "Type the 'filename' to download or 'exit' to discontinue " << std::endl;

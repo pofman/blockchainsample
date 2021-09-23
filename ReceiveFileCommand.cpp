@@ -2,11 +2,11 @@
 #include <sys/socket.h>
 #include "include/commands/ReceiveFileCommand.h"
 
-ReceiveFileCommand::ReceiveFileCommand(int socketId)
-    : Command(socketId)
+ReceiveFileCommand::ReceiveFileCommand()
+    : Command()
 {}
 
-void ReceiveFileCommand::Execute()
+void ReceiveFileCommand::Execute(int socketId, const char * cmd)
 {
     char buffer[MAX_BUFFER_LEN + 4];
 	char file_name[MAX_BUFFER_LEN];

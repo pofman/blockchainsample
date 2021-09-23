@@ -3,8 +3,6 @@
 class Command
 {
     public:
-        Command(int socketId);
-        virtual void Execute() = 0;
-    protected:
-        int socketId;
+        Command();
+        virtual void Execute(int socketId, const char * cmd) = 0;
 };

@@ -39,11 +39,9 @@ void PeerReceiver::StartReceiver(){
 		recv(newsockfd, cmd, MAX_COMMAND_LEN, 0);
 		while (strcmp(cmd, "disconnect")) {
 			if (!strcmp(cmd, "ls")) {
-				ListFilesCommand(newsockfd).Execute();
+				ListFilesCommand().Execute(newsockfd, cmd);
 			} else if (std::string(cmd).rfind("get", 0) == 0) {
-				int index = std::string(cmd).find(" ") + 1;
-				std::string fileName = std::string(cmd).substr(index, sizeof(cmd) - index);
-				ReadFileCommand(newsockfd, fileName.c_str()).Execute();
+				ReadFileCommand().Execute(newsockfd, cmd);
 			}
 
 			memset(cmd, 0, sizeof(cmd));

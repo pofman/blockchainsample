@@ -5,6 +5,6 @@
 class ReceiveFileCommand : public Command
 {
 public:
-    ReceiveFileCommand(int socketId);
-    void Execute() override;
+    ReceiveFileCommand();
+    void Execute(int socketId, const char * cmd) override;
 };

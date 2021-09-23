@@ -1,6 +1,5 @@
 #include "include/Command.h"
 
-Command::Command(int socketId)
+Command::Command()
 {
-    this->socketId = socketId;
 }

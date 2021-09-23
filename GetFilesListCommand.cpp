@@ -6,11 +6,11 @@
 #include <sys/socket.h>
 #include "include/commands/GetFilesListCommand.h"
 
-GetFilesListCommand::GetFilesListCommand(int socketId)
-    : Command(socketId)
+GetFilesListCommand::GetFilesListCommand()
+    : Command()
 {}
 
-void GetFilesListCommand::Execute()
+void GetFilesListCommand::Execute(int socketId, const char * cmd)
 {
 	int R, received = 0;
     char small_buff[MAX_BUFFER_LEN];
