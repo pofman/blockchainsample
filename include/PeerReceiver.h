@@ -10,6 +10,7 @@
 #include <regex.h>
 #include <thread>
 #include <iostream>
+#include <map>
 #include "Color.h"
 #include "Blockchain.h"
 #include "commands/ListFilesCommand.h"
@@ -18,6 +19,7 @@
 class PeerReceiver
 {
 private:
+	std::map<std::string, std::function<std::unique_ptr<Command>()>> commands;
 	std::string ReceiverName ="";
 	int ReceiverPort=0, sockfd=0, newsockfd=0, portno=0;
 	socklen_t clilen;

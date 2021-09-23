@@ -9,8 +9,7 @@ ReadFileCommand::ReadFileCommand()
 void ReadFileCommand::Execute(int socketId, const char * cmd)
 {
 	auto index = std::string(cmd).find(" ") + 1;
-	auto fileName = std::string(cmd).substr(index, sizeof(cmd) - index);
-
+	auto fileName = std::string(cmd).substr(index, std::strlen(cmd) - index);
     char buff[MAX_BUFFER_LEN + 3];
 	memset(buff, 0, sizeof(buff));
     char folder[sizeof(SERVER_SHARED_DIR)+1];

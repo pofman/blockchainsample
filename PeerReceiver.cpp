@@ -4,6 +4,8 @@ PeerReceiver::PeerReceiver(std::string receiverName, int receiverPort, std::shar
 	this->ReceiverName = receiverName;
 	this->ReceiverPort = receiverPort;
     this->blockchain = blockchain;
+	this->commands.emplace("ls", []() -> std::unique_ptr<Command> { return std::make_unique<ListFilesCommand>(); });
+	this->commands.emplace("get", []() -> std::unique_ptr<Command> { return std::make_unique<ReadFileCommand>(); });
 }
 
 PeerReceiver::~PeerReceiver()
@@ -38,10 +40,8 @@ void PeerReceiver::StartReceiver(){
 		char cmd[MAX_COMMAND_LEN];
 		recv(newsockfd, cmd, MAX_COMMAND_LEN, 0);
 		while (strcmp(cmd, "disconnect")) {
-			if (!strcmp(cmd, "ls")) {
-				ListFilesCommand().Execute(newsockfd, cmd);
-			} else if (std::string(cmd).rfind("get", 0) == 0) {
-				ReadFileCommand().Execute(newsockfd, cmd);
+			if(commands.count(Command::ExtractCommand(cmd)) > 0) {
+				commands[Command::ExtractCommand(cmd)]()->Execute(newsockfd, cmd);
 			}
 
 			memset(cmd, 0, sizeof(cmd));

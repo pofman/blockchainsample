@@ -8,6 +8,8 @@
 PeerSender::PeerSender(std::shared_ptr<Blockchain> blockchain)
 {
     this->blockchain = blockchain;
+	this->commands.emplace("ls", []() -> std::unique_ptr<Command> { return std::make_unique<GetFilesListCommand>(); });
+	this->commands.emplace("get", []() -> std::unique_ptr<Command> { return std::make_unique<ReceiveFileCommand>(); });
 }
 
 PeerSender::~PeerSender()
@@ -50,10 +52,8 @@ void PeerSender::FileDownload()
 			std::cerr<< "ERROR sending" << strerror(errno) << "\n";
 		};
 
-		if (!strcmp(cmd, "ls")) {
-			GetFilesListCommand().Execute(sockfd, cmd);
-		} else {
-			ReceiveFileCommand().Execute(sockfd, cmd);
+		if(commands.count(Command::ExtractCommand(cmd)) > 0) {
+			commands[Command::ExtractCommand(cmd)]()->Execute(sockfd, cmd);
 		}
 
 		std::cout << "Type the 'filename' to download or 'exit' to discontinue " << std::endl;

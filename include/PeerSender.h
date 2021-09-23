@@ -10,11 +10,14 @@
 #include <regex.h>
 #include <thread>
 #include <iostream>
+#include <map>
 #include "Blockchain.h"
+#include "Command.h"
 
 class PeerSender
 {
 private:
+	std::map<std::string, std::function<std::unique_ptr<Command>()>> commands;
 	std::string SenderName ="";
 	int SenderPort=0;
 	int sockfd=0,portno=0;
