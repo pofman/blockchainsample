@@ -55,5 +55,7 @@ set(Sources
     main.cpp
 )
 
-add_executable(${This} MACOSX_BUNDLE ${Sources})
+add_executable(${This} ${Sources})
+add_custom_command(TARGET ${This} PRE_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/shared ${CMAKE_BINARY_DIR}/shared)
 target_link_libraries(${This} OpenSSL::SSL)
