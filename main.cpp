@@ -13,8 +13,6 @@
 #include "include/PeerSender.h"
 #include "include/BlockchainNetwork.h"
 
-
-
 int main(int argc, char **argv)
 {
      if(argc < 3)
@@ -29,30 +27,6 @@ int main(int argc, char **argv)
      auto tinchocoin = std::make_shared<Blockchain>();
      BlockchainNetwork network(PeerReceiverName, PeerReceiverPort, tinchocoin);
      network.startNetwork();
-
-     std::cout << "Mining block 1" << std::endl;
-     time_t dataTime;
-     TransactionData data(1.5, "Pepe", "Botella", time(&dataTime));
-     tinchocoin->addBlock(data);
-
-     std::cout << "Mining block 2" << std::endl;
-     time_t dataTime2;
-     TransactionData data2(0.00013322, "Alberto", "Bolaños", time(&dataTime2));
-     tinchocoin->addBlock(data2);
-
-     tinchocoin->printChain();
-
-     std::cout << "\nIs Chain valid?" << std::endl
-          << tinchocoin->isChainValid() << std::endl;
-
-     Block* hackBlock = tinchocoin->getLatestBlock();
-     hackBlock->data.amount = 10000;
-     hackBlock->data.receiverKey = "Tony Stark";
-
-     tinchocoin->printChain();
-
-     std::cout << "\nNow Is Chain valid??????" << std::endl
-          << tinchocoin->isChainValid() << std::endl;
 
      while(true)
      {}

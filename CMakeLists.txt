@@ -21,9 +21,12 @@ set(Headers
     "include/Color.h"
     "include/Command.h"
     "include/GetFilesListCommand.h"
+    "include/commands/CreateTransactionCommand.h"
     "include/commands/ListFilesCommand.h"
+    "include/commands/PrintBlockchainCommand.h"
     "include/commands/ReadFileCommand.h"
     "include/commands/ReceiveFileCommand.h"
+    "include/commands/ReplaceBlockchainCommand.h"
     "include/domain/Peer.h"
     "include/PeerReceiver.h"
     "include/PeerSender.h"
@@ -33,14 +36,18 @@ set(Headers
 set(Sources
     Block.cpp
     Blockchain.cpp
+    BlockchainCommand.cpp
     BlockchainNetwork.cpp
     "Command.cpp"
+    CreateTransactionCommand.cpp
     GetFilesListCommand.cpp
     ListFilesCommand.cpp
     PeerReceiver.cpp
     PeerSender.cpp
+    PrintBlockchainCommand.cpp
     ReadFileCommand.cpp
     ReceiveFileCommand.cpp
+    ReplaceBlockchainCommand.cpp
     main.cpp
 )
 

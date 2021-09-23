@@ -3,6 +3,8 @@
 #include "include/Blockchain.h"
 #include "include/commands/GetFilesListCommand.h"
 #include "include/commands/ReceiveFileCommand.h"
+#include "include/commands/PrintBlockchainCommand.h"
+#include "include/commands/CreateTransactionCommand.h"
 #include <errno.h>
 
 PeerSender::PeerSender(std::shared_ptr<Blockchain> blockchain)
@@ -10,6 +12,8 @@ PeerSender::PeerSender(std::shared_ptr<Blockchain> blockchain)
     this->blockchain = blockchain;
 	this->commands.emplace("ls", []() -> std::unique_ptr<Command> { return std::make_unique<GetFilesListCommand>(); });
 	this->commands.emplace("get", []() -> std::unique_ptr<Command> { return std::make_unique<ReceiveFileCommand>(); });
+	this->commands.emplace("bc-print", [&]() -> std::unique_ptr<Command> { return std::make_unique<PrintBlockchainCommand>(blockchain); });
+	this->commands.emplace("bc-create-tran", [&]() -> std::unique_ptr<Command> { return std::make_unique<CreateTransactionCommand>(blockchain); });
 }
 
 PeerSender::~PeerSender()
@@ -56,7 +60,8 @@ void PeerSender::FileDownload()
 			commands[Command::ExtractCommand(cmd)]()->Execute(sockfd, cmd);
 		}
 
-		std::cout << "Type the 'filename' to download or 'exit' to discontinue " << std::endl;
+		std::cout << "\n";
+		std::cout << "Type a command or 'exit' to discontinue " << std::endl;
 		GetPrompt(cmd);
 	}
 	if (send(sockfd, "disconnect", MAX_PACKET_CHUNK_LEN, 0) < 0) {
