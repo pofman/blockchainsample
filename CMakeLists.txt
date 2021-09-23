@@ -36,23 +36,23 @@ set(Headers
 )
 
 set(Sources
-    Block.cpp
-    Blockchain.cpp
-    BlockchainCommand.cpp
-    BlockchainNetwork.cpp
-    "Command.cpp"
-    CreateTransactionCommand.cpp
-    GetBlockchainCommand.cpp
-    GetFilesListCommand.cpp
-    ListFilesCommand.cpp
-    PeerReceiver.cpp
-    PeerSender.cpp
-    PrintBlockchainCommand.cpp
-    ReadFileCommand.cpp
-    ReceiveFileCommand.cpp
-    ReplaceBlockchainCommand.cpp
-    StringHelper.cpp
-    main.cpp
+    src/Block.cpp
+    src/Blockchain.cpp
+    src/BlockchainCommand.cpp
+    src/BlockchainNetwork.cpp
+    "src/Command.cpp"
+    src/CreateTransactionCommand.cpp
+    src/GetBlockchainCommand.cpp
+    src/GetFilesListCommand.cpp
+    src/ListFilesCommand.cpp
+    src/PeerReceiver.cpp
+    src/PeerSender.cpp
+    src/PrintBlockchainCommand.cpp
+    src/ReadFileCommand.cpp
+    src/ReceiveFileCommand.cpp
+    src/ReplaceBlockchainCommand.cpp
+    src/StringHelper.cpp
+    src/main.cpp
 )
 
 add_executable(${This} ${Sources})
