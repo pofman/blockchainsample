@@ -22,7 +22,6 @@ private:
 	struct hostent *server;
 	char buffer[256]={0};
 	char ip[INET_ADDRSTRLEN]={0};
-	char *receive=NULL;
     std::shared_ptr<Blockchain> blockchain;
 	void GetPrompt(char *cmd);
 

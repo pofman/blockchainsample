@@ -5,8 +5,8 @@
 class GetFilesListCommand : public Command
 {
 public:
-    GetFilesListCommand(int socketId, char **buffer);
+    GetFilesListCommand(int socketId);
     void Execute() override;
 private:
-    char **buffer;
+    char *receive=NULL;
 };

@@ -23,8 +23,8 @@ void PeerSender::RegisterPeer(std::string hostname, int port){
 	this->SenderPort=port;
 }
 
-void PeerSender::FileDownload(){
-
+void PeerSender::FileDownload()
+{
 	sockfd = socket(AF_INET, SOCK_STREAM, 0);
 	if (sockfd < 0)
 		throw std::runtime_error("ERROR opening socket");
@@ -45,20 +45,17 @@ void PeerSender::FileDownload(){
 	char cmd[MAX_COMMAND_LEN];
 	strcpy(cmd,"ls"); //listing of server files
 	while (strcmp(cmd, "exit")) {
+		std::cout <<" Requested command is " << cmd  <<std::endl;
+		if (send(sockfd, cmd, MAX_COMMAND_LEN, 0) < 0) {
+			std::cerr<< "ERROR sending" << strerror(errno) << "\n";
+		};
+
 		if (!strcmp(cmd, "ls")) {
-			if (send(sockfd, "ls", MAX_COMMAND_LEN, 0) < 0) {
-				std::cerr<< "ERROR sending" << strerror(errno) << "\n";
-			};
-			GetFilesListCommand(sockfd, &receive).Execute();
-			std::cout<< receive <<"\n";
-			free(receive);
+			GetFilesListCommand(sockfd).Execute();
 		} else {
-			std::cout <<" Requested command is " << cmd  <<std::endl;
-			if (send(sockfd, cmd, MAX_COMMAND_LEN, 0) < 0) {
-				std::cerr << "command:send_request: Sending Error\n";
-			}
 			ReceiveFileCommand(sockfd).Execute();
 		}
+
 		std::cout << "Type the 'filename' to download or 'exit' to discontinue " << std::endl;
 		GetPrompt(cmd);
 	}
