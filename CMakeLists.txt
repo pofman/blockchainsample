@@ -22,6 +22,7 @@ set(Headers
     "include/Command.h"
     "include/GetFilesListCommand.h"
     "include/commands/CreateTransactionCommand.h"
+    "include/commands/GetBlockchainCommand.h"
     "include/commands/ListFilesCommand.h"
     "include/commands/PrintBlockchainCommand.h"
     "include/commands/ReadFileCommand.h"
@@ -30,6 +31,7 @@ set(Headers
     "include/domain/Peer.h"
     "include/PeerReceiver.h"
     "include/PeerSender.h"
+    "include/StringHelper.h"
     "include/TransactionData.h"
 )
 
@@ -40,6 +42,7 @@ set(Sources
     BlockchainNetwork.cpp
     "Command.cpp"
     CreateTransactionCommand.cpp
+    GetBlockchainCommand.cpp
     GetFilesListCommand.cpp
     ListFilesCommand.cpp
     PeerReceiver.cpp
@@ -48,6 +51,7 @@ set(Sources
     ReadFileCommand.cpp
     ReceiveFileCommand.cpp
     ReplaceBlockchainCommand.cpp
+    StringHelper.cpp
     main.cpp
 )
 

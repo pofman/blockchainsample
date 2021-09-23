@@ -5,6 +5,7 @@
 #include "include/commands/ReceiveFileCommand.h"
 #include "include/commands/PrintBlockchainCommand.h"
 #include "include/commands/CreateTransactionCommand.h"
+#include "include/commands/ReplaceBlockchainCommand.h"
 #include <errno.h>
 
 PeerSender::PeerSender(std::shared_ptr<Blockchain> blockchain)
@@ -14,6 +15,7 @@ PeerSender::PeerSender(std::shared_ptr<Blockchain> blockchain)
 	this->commands.emplace("get", []() -> std::unique_ptr<Command> { return std::make_unique<ReceiveFileCommand>(); });
 	this->commands.emplace("bc-print", [&]() -> std::unique_ptr<Command> { return std::make_unique<PrintBlockchainCommand>(blockchain); });
 	this->commands.emplace("bc-create-tran", [&]() -> std::unique_ptr<Command> { return std::make_unique<CreateTransactionCommand>(blockchain); });
+	this->commands.emplace("bc-get-chain", [&]() -> std::unique_ptr<Command> { return std::make_unique<ReplaceBlockchainCommand>(blockchain); });
 }
 
 PeerSender::~PeerSender()

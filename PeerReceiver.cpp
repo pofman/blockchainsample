@@ -1,4 +1,5 @@
 #include "include/PeerReceiver.h"
+#include "include/commands/GetBlockchainCommand.h"
 
 PeerReceiver::PeerReceiver(std::string receiverName, int receiverPort, std::shared_ptr<Blockchain> blockchain){
 	this->ReceiverName = receiverName;
@@ -6,6 +7,7 @@ PeerReceiver::PeerReceiver(std::string receiverName, int receiverPort, std::shar
     this->blockchain = blockchain;
 	this->commands.emplace("ls", []() -> std::unique_ptr<Command> { return std::make_unique<ListFilesCommand>(); });
 	this->commands.emplace("get", []() -> std::unique_ptr<Command> { return std::make_unique<ReadFileCommand>(); });
+	this->commands.emplace("bc-get-chain", [&]() -> std::unique_ptr<Command> { return std::make_unique<GetBlockchainCommand>(blockchain); });
 }
 
 PeerReceiver::~PeerReceiver()

@@ -16,3 +16,4 @@ const int MAX_BUFFER_LEN =5000;
 const int MAX_COMMAND_LEN = 200;
 const int MAX_PACKET_CHUNK_LEN = 1024;
 const char* const SERVER_SHARED_DIR = "shared";
+const char* const SERIALIZATION_DELIMITER = ";";

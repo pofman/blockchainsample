@@ -24,4 +24,6 @@ class Block
         TransactionData data;
 
         bool isHashValid();
+        std::string serialize();
+        static Block deserialize(std::string serialized);
 };
