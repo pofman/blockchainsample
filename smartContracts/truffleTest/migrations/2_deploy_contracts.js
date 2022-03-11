@@ -10,6 +10,7 @@ var SelfDestruct = artifacts.require("./SelfDestruct.sol");
 var ContractFactory = artifacts.require("./ContractFactory.sol");
 var NameRegistry = artifacts.require("./NameRegistry.sol");
 var UserAddressRegistry = artifacts.require("./UserAddressRegistry.sol");
+var WithdrawalContract = artifacts.require("./WithdrawalContract.sol");
 // var CalculatorV2 = artifacts.require("./CalculatorV2.sol");
 
 module.exports = function(deployer) {
@@ -25,5 +26,6 @@ module.exports = function(deployer) {
   deployer.deploy(ContractFactory, 5, 110);
   deployer.deploy(NameRegistry);
   deployer.deploy(UserAddressRegistry);
+  deployer.deploy(WithdrawalContract);
 //   deployer.deploy(CalculatorV2, 10);
 };
