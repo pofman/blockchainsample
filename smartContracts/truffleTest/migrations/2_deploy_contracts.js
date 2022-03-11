@@ -8,6 +8,8 @@ var MultiNumberBettingV5 = artifacts.require("./MultiNumberBettingV5.sol");
 var MultiNumberBettingV6 = artifacts.require("./MultiNumberBettingV6.sol");
 var SelfDestruct = artifacts.require("./SelfDestruct.sol");
 var ContractFactory = artifacts.require("./ContractFactory.sol");
+var NameRegistry = artifacts.require("./NameRegistry.sol");
+var UserAddressRegistry = artifacts.require("./UserAddressRegistry.sol");
 // var CalculatorV2 = artifacts.require("./CalculatorV2.sol");
 
 module.exports = function(deployer) {
@@ -21,5 +23,7 @@ module.exports = function(deployer) {
   deployer.deploy(MultiNumberBettingV6, 2, 5, 7);
   deployer.deploy(SelfDestruct);
   deployer.deploy(ContractFactory, 5, 110);
+  deployer.deploy(NameRegistry);
+  deployer.deploy(UserAddressRegistry);
 //   deployer.deploy(CalculatorV2, 10);
 };
