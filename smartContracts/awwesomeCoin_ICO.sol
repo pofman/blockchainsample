@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 //Awesome coin ICO
 
 pragma solidity >=0.7.0 <0.9.0;
