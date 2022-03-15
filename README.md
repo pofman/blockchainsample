@@ -8,9 +8,10 @@ or use cmake to build
 ## Init private chain
 
 ```bash
-# important to have some private keys or key store wallets to init the chain in the genisis block
+geth --datadir {yourPath} account new
 geth init --datadir {yourPath} genesis.json
 geth --datadir {yourPath} -networkid 15 --http --allow-insecure-unlock
+# other opcion to init -> geth --networkid 15 --datadir "{yourPath}" --nodiscover --port 30303 --ipcdisable console
 ```
 
 Remember to unlock accounts in order to perfom transactions
@@ -26,3 +27,5 @@ personal.unlockAccount("{accNumber}", "{accPhrase}", 0) //0 refers to the number
 * Name Registry Pattern
 * Mapping Iterator Pattern
 * Sending ethers from contract: Withdrawal pattern
+## Notes
+* Get enode info -> admin.nodeInfo.enode
